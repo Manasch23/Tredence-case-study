@@ -1,6 +1,6 @@
 # Self-Pruning Neural Network — Case Study Report
 
-This is my submission for the Tredence AI Engineering Internship case study. The task was to build a neural network that prunes itself *during* training — not as a post-processing step, but as part of the learning process itself.
+This is my submission for the Tredence AI Engineering Internship case study. The task was to build a neural network that prunes itself during training — not as a post-processing step, but as part of the learning process itself.
 
 ---
 
@@ -8,7 +8,7 @@ This is my submission for the Tredence AI Engineering Internship case study. The
 
 Standard pruning workflows go: train → evaluate importance → remove weights. This project flips that. Instead of deciding what to prune after the fact, the network learns *which connections matter* while it's still training.
 
-The core trick: every weight gets a paired "gate" — a scalar between 0 and 1 that multiplies the weight's output. If a gate collapses to zero, that connection stops contributing anything. To make most gates collapse, we add an L1 penalty on them to the loss. L1 is key here — unlike L2, its gradient is constant regardless of how small the gate already is, so there's a consistent downward push all the way to zero. L2 loses its grip as values get small, which is why weights regularized with L2 never actually hit zero.
+The core trick: every weight gets a paired gate — a scalar between 0 and 1 that multiplies the weight's output. If a gate collapses to zero, that connection stops contributing anything. To make most gates collapse, we add an L1 penalty on them to the loss. L1 is key here — unlike L2, its gradient is constant regardless of how small the gate already is, so there's a consistent downward push all the way to zero. L2 loses its grip as values get small, which is why weights regularized with L2 never actually hit zero.
 
 The tradeoff between accuracy and sparsity is controlled by λ (lambda). Larger λ = more gates pruned = sparser network = some accuracy loss.
 
