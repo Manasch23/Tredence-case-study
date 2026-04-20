@@ -1,4 +1,4 @@
-# Self-Pruning Neural Network on CIFAR-10
+# Self-Pruning Neural Network — Case Study Report
 
 This is my submission for the Tredence AI Engineering Internship case study. The task was to build a neural network that prunes itself *during* training — not as a post-processing step, but as part of the learning process itself.
 
